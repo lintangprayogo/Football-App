@@ -1,16 +1,16 @@
-class ScoreMatch {
+class FootballMatch {
   Fixture fixture;
   Team home;
   Team away;
   Goal goal;
 
-  ScoreMatch(this.fixture, this.home, this.away, this.goal);
-  factory ScoreMatch.fromJson(Map<String, dynamic> json) {
-    return ScoreMatch(
+  FootballMatch(this.fixture, this.home, this.away, this.goal);
+  factory FootballMatch.fromJson(Map<String, dynamic> json) {
+    return FootballMatch(
         Fixture.fromJson(json['fixture']),
         Team.fromJson(json['teams']['home']),
-        Team.fromJson(json['teams']['home']),
-        Goal.fromJson(json['goal']));
+        Team.fromJson(json['teams']['away']),
+        Goal.fromJson(json['goals']));
   }
 }
 
@@ -39,7 +39,7 @@ class Team {
   int id;
   String name;
   String logo;
-  bool winner;
+  bool? winner;
 
   Team(this.id, this.name, this.logo, this.winner);
 
@@ -49,8 +49,8 @@ class Team {
 }
 
 class Goal {
-  int home;
-  int away;
+  int? home;
+  int? away;
   Goal(this.home, this.away);
 
   factory Goal.fromJson(Map<String, dynamic> json) {

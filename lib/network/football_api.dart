@@ -12,15 +12,15 @@ class FootballApi {
     'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
   };
 
-  Future<List<ScoreMatch>> getAllScore() async {
+  Future<List<FootballMatch>> getAllScore() async {
     Response res = await get(Uri.parse(apiUrl), headers: headers);
     var body;
 
     if (res.statusCode == 200) {
       body = jsonDecode(res.body);
       List<dynamic> response = body["response"];
-      List<ScoreMatch> scoreMatches =
-          response.map((dynamic json) => ScoreMatch.fromJson(json)).toList();
+      List<FootballMatch> scoreMatches =
+          response.map((dynamic json) => FootballMatch.fromJson(json)).toList();
       return scoreMatches;
     }
     return [];
